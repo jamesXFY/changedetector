@@ -1,2 +1,5 @@
 <div>{{consoleObject.count}} child</div>
+<div *ngFor="let user of (users | userfilter:true:reload)">
+  {{user.name}}
+</div>
 <button (click)="detect()">child detect</button>

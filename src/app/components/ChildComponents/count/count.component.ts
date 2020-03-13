@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, OnChanges, AfterViewChecked } from '@angular/core';
 
 @Component({
   selector: 'app-count',
@@ -6,13 +6,42 @@ import { Component, OnInit, Input, ChangeDetectionStrategy, ChangeDetectorRef, O
   styleUrls: ['./count.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CountComponent implements OnInit, OnChanges {
+export class CountComponent implements OnInit, OnChanges, AfterViewChecked {
 
-  @Input() consoleObject: {count: number};
+  @Input() consoleObject: { count: number };
+
+  public reload = false;
+
+  public users = [
+    {
+      name: 'lynan',
+      status: false
+    },
+    {
+      name: 'Jordan',
+      status: true
+    },
+    {
+      name: 'silly',
+      status: true
+    },
+    {
+      name: 'James',
+      status: false
+    },
+    {
+      name: 'Christ',
+      status: true
+    }
+  ];
 
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('count checked');
   }
 
   ngOnChanges() {
@@ -20,6 +49,8 @@ export class CountComponent implements OnInit, OnChanges {
   }
 
   detect() {
+    this.users[0].status = !this.users[0].status;
+    this.reload = !this.reload;
     this.changeDetectorRef.detectChanges();
   }
 

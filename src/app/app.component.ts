@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewChecked, ChangeDetectionStrategy } from '@angular/core';
 import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent {
+export class AppComponent implements AfterViewChecked {
   title = 'ChangeDetector';
   consoleObject = {
     count: 0
@@ -20,5 +21,9 @@ export class AppComponent {
 
   triggerDetector() {
     this.actionSubject.next();
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('app checked');
   }
 }

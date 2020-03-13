@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { DetectorConsoleComponent } from './components/detector-console/detector-console.component';
 import { CountComponent } from './components/ChildComponents/count/count.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ListenersDirective } from './directives/listeners.directive';
+import { UserfilterPipe } from './shared/userfilter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     DetectorConsoleComponent,
-    CountComponent
+    CountComponent,
+    ListenersDirective,
+    UserfilterPipe
   ],
   imports: [
     BrowserModule,
